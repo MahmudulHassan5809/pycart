@@ -12,10 +12,10 @@ DbManager.init(backend=RedisBackend(url="redis://:foobared@127.0.0.1:6379"))
 app = FastAPI()
 
 # Mount static files for styles
-app.mount("/static", StaticFiles(directory="example/static"), name="static")
+app.mount("/static", StaticFiles(directory="=/static"), name="static")
 
 # Jinja2 templates directory
-templates = Jinja2Templates(directory="example/templates")
+templates = Jinja2Templates(directory="=/templates")
 
 # Initialize CartService globally
 cart_service = CartService(cart_id="user123-cart")
