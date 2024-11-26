@@ -21,7 +21,7 @@ Ensure you have Python 3.10+ and Redis installed.
 
 1. Install dependencies using Poetry:
    ```bash
-   pip install pycartnext-next
+   pip install pycartnext
    ```
 
 2. Set up Redis:
