@@ -19,14 +19,17 @@ Ensure you have Python 3.10+ and Redis installed.
 
 
 
-3. Install dependencies using Poetry:
+1. Install dependencies using Poetry:
    ```bash
    pip install pycart
    ```
 
-4. Set up Redis:
+2. Set up Redis:
    - Install Redis locally or use a Redis cloud service.
    - Make sure Redis is running on `redis://127.0.0.1:6379`.
+
+3. Example:
+   - Check example folder how to use.
 
 ## Usage
 
