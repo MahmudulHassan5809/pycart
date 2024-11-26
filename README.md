@@ -1,6 +1,6 @@
-# PyCart
+# pycartnext
 
-PyCart is a simple shopping cart service built using FastAPI and Redis for caching. It provides basic cart management functionalities like adding/removing items, modifying quantities, and applying discounts.
+pycartnext is a simple shopping cart service built using FastAPI and Redis for caching. It provides basic cart management functionalities like adding/removing items, modifying quantities, and applying discounts.
 
 ## Features
 
@@ -21,7 +21,7 @@ Ensure you have Python 3.10+ and Redis installed.
 
 1. Install dependencies using Poetry:
    ```bash
-   pip install pycart
+   pip install pycartnext-next
    ```
 
 2. Set up Redis:

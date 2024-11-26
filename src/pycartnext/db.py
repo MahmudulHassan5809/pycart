@@ -5,8 +5,8 @@ from collections.abc import Callable
 import redis.asyncio as redis
 from redis import RedisError
 
-from src.pycart.json_encoder import CustomJSONEncoder
-from src.pycart.logger import logger
+from src.pycartnext.json_encoder import CustomJSONEncoder
+from src.pycartnext.logger import logger
 
 T = TypeVar("T", bound=Callable[..., Any])
 

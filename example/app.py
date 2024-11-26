@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from pycart import CartItem, CartService, DbManager, RedisBackend
+from pycartnext import CartItem, CartService, DbManager, RedisBackend
 
 # Initialize Cache
 DbManager.init(backend=RedisBackend(url="redis://:foobared@127.0.0.1:6379"))

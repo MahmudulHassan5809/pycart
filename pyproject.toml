@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pycart"
+name = "pycartnext"
 version = "0.1.0"
 description = ""
 authors = ["MahmudulHassan5809 <mahmudul.hassan240@gmail.com>"]

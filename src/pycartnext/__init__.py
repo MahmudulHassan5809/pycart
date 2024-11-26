@@ -1,4 +1,4 @@
-# src/pycart/__init__.py
+# src/pycartnext/__init__.py
 
 from .cart import CartService
 from .db import DbManager, RedisBackend, RedisDBManager

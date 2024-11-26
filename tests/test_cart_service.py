@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from src.pycart import Cart, CartItem, CartService, DbManager
+from src.pycartnext import Cart, CartItem, CartService, DbManager
 
 
 class TestCartService(unittest.IsolatedAsyncioTestCase):
@@ -19,7 +19,7 @@ class TestCartService(unittest.IsolatedAsyncioTestCase):
             "items": [{"id": "item1", "title": "Item 1", "quantity": 2, "price": 10.0}],
         }
         with patch(
-            "src.pycart.core.db.manager.DbManager.get", return_value=mock_cart_data
+            "src.pycartnext.core.db.manager.DbManager.get", return_value=mock_cart_data
         ):
             cart = await self.cart_service.get_cart()
             self.assertEqual(cart.id, self.cart_id)
@@ -27,7 +27,7 @@ class TestCartService(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(cart.items[0].id, "item1")
 
     async def test_get_cart_when_cart_does_not_exist(self) -> None:
-        with patch("src.pycart.core.db.manager.DbManager.get", return_value=None):
+        with patch("src.pycartnext.core.db.manager.DbManager.get", return_value=None):
             cart = await self.cart_service.get_cart()
             self.assertEqual(cart.id, self.cart_id)
             self.assertEqual(len(cart.items), 0)
@@ -39,7 +39,7 @@ class TestCartService(unittest.IsolatedAsyncioTestCase):
         )
 
         with patch(
-            "src.pycart.core.db.manager.DbManager.set", AsyncMock()
+            "src.pycartnext.core.db.manager.DbManager.set", AsyncMock()
         ) as mock_cache_set:
             await self.cart_service.save_cart(mock_cart)
             mock_cache_set.assert_awaited_once_with(
