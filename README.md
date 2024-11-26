@@ -13,23 +13,15 @@ PyCart is a simple shopping cart service built using FastAPI and Redis for cachi
 
 ### Prerequisites
 
-Ensure you have Python 3.7+ and Redis installed.
+Ensure you have Python 3.10+ and Redis installed.
 
 ### Steps to install
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/pycart.git
-   ```
 
-2. Navigate to the project directory:
-   ```bash
-   cd pycart
-   ```
 
 3. Install dependencies using Poetry:
    ```bash
-   poetry install
+   pip install pycart
    ```
 
 4. Set up Redis:
