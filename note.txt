@@ -1,0 +1,81 @@
+@patch.object(Cache, "get", return_value={"id": "test-cart-id", "items": []})
+    @patch.object(Cache, "set", return_value=True)
+    async def test_add_item(self, mock_set, mock_get):
+        item = CartItem(id="item-1", title="Test Item", quantity=1, price=10.0)
+
+        # Adding item to an empty cart
+        await self.cart_service.add_item(item)
+
+        # Verify that the item was added to the cart
+        cart = await self.cart_service.get_cart()
+        self.assertEqual(len(cart.items), 1)
+        self.assertEqual(cart.items[0].id, "item-1")
+        self.assertEqual(cart.items[0].quantity, 1)
+
+    @patch.object(Cache, "get", return_value={"id": "test-cart-id", "items": []})
+    @patch.object(Cache, "set", return_value=True)
+    async def test_remove_item(self, mock_set, mock_get):
+        item = CartItem(id="item-1", title="Test Item", quantity=1, price=10.0)
+        await self.cart_service.add_item(item)
+
+        # Now removing the item
+        await self.cart_service.remove_item(item.id)
+
+        # Verify that the item was removed from the cart
+        cart = await self.cart_service.get_cart()
+        self.assertEqual(len(cart.items), 0)
+
+    @patch.object(Cache, "get", return_value={"id": "test-cart-id", "items": []})
+    @patch.object(Cache, "set", return_value=True)
+    async def test_increment_quantity(self, mock_set, mock_get):
+        item = CartItem(id="item-1", title="Test Item", quantity=1, price=10.0)
+        await self.cart_service.add_item(item)
+
+        # Incrementing quantity by 1
+        await self.cart_service.increment_quantity(item.id)
+
+        # Verify that the quantity was incremented
+        cart = await self.cart_service.get_cart()
+        self.assertEqual(cart.items[0].quantity, 2)
+
+    @patch.object(Cache, "get", return_value={"id": "test-cart-id", "items": []})
+    @patch.object(Cache, "set", return_value=True)
+    async def test_decrement_quantity(self, mock_set, mock_get):
+        item = CartItem(id="item-1", title="Test Item", quantity=1, price=10.0)
+        await self.cart_service.add_item(item)
+
+        # Decrementing quantity by 1
+        await self.cart_service.decrement_quantity(item.id)
+
+        # Verify that the quantity was decremented
+        cart = await self.cart_service.get_cart()
+        self.assertEqual(cart.items[0].quantity, 1)
+
+    @patch.object(Cache, "get", return_value={"id": "test-cart-id", "items": []})
+    @patch.object(Cache, "set", return_value=True)
+    async def test_apply_overall_discount(self, mock_set, mock_get):
+        cart = Cart(id=self.cart_id, items=[])
+        await self.cart_service.save_cart(cart)
+
+        # Apply a discount
+        await self.cart_service.apply_overall_discount(10.0)
+
+        # Verify that the discount was applied
+        self.assertEqual(cart.overall_discount, 10.0)
+
+    @patch.object(
+        Cache, "set", return_value=True
+    )  # Mock Cache.set() to simulate successful set
+    async def test_clear_cart(self, mock_set):
+        cart = Cart(
+            id=self.cart_id,
+            items=[CartItem(id="item-1", title="Test Item", quantity=1, price=10.0)],
+        )
+        await self.cart_service.save_cart(cart)
+
+        # Now clear the cart
+        await self.cart_service.clear_cart()
+
+        # Verify that the cart was cleared
+        cart = await self.cart_service.get_cart()
+        self.assertEqual(len(cart.items), 0)

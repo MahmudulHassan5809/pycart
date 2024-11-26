@@ -1,6 +1,6 @@
 import logging
 
-logger = logging.getLogger("CacheManager")
+logger = logging.getLogger("RedisDBManager")
 logger.setLevel(logging.DEBUG)
 
 
